@@ -66,3 +66,30 @@ Route::view('/weird-greeting', 'weird_greeting', ['message' => 'That is weird!']
 To list all routes
 php artisan route:list or ./vendor/bin/sail artisan route:list -v (show middleware assigned to each route) --except-vendor (hide third-party routes)
 */
+
+Route::get('/user/{id}/comments/{comment_id}/order/{order?}', function(Request $request, $userId, $commentId, $order='desc') {
+    // do something with $request
+
+    return 'User '.$userId.' with comment '.$commentId.' sorted '.$order;
+});
+
+/*
+Parameter constraints can also be defined as regex. Ex.: where(['id' => '[0-9]+', 'name' => '[a-z]+', 'category' => '(movie|song|painting)'])
+*/
+Route::get('/user/{id}/{name}/category/{category}', function($userId, $name, $category) {
+    return 'User '.$userId.' named '.$name.' of category '.$category;
+})->whereNumber('id')->whereAlpha('name')->whereIn('category', ['movie', 'song', 'painting']);
+
+/*
+Global contraints defined inside App\Providers\RouteServiceProvider's boot() with Route::pattern(param_name, regex_string)
+*/
+Route::get('/call/{devil}', function($devilNumber) {
+    return 'You called the devil!';
+});
+
+/*
+Explicitly allow / to be part of parameter value
+*/
+Route::get('/search/{search?}', function($search=null) {
+    return $search;
+})->where('search', '.*');

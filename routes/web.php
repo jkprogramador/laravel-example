@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+/*
+Most basic routing accepts URI and a closure.
+ */
+Route::get('/greeting', function() {
+    return 'Hello World';
+});

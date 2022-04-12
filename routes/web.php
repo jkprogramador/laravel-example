@@ -55,3 +55,9 @@ By default, 302 status. Specify 301 (permanent redirect) as Route::redirect(from
 When using route paramenters, DO NOT USE destination nor status (reserved by Laravel).
 */
 Route::redirect('/finish-shopping', '/checkout');
+
+/*
+Route::view(uri, view_name, [array of data]) suitable if you only need to return a view.
+When using route parameters, DO NOT USE view, data, status and headers (reserved by Laravel).
+*/
+Route::view('/weird-greeting', 'weird_greeting', ['message' => 'That is weird!']);

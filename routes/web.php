@@ -61,3 +61,8 @@ Route::view(uri, view_name, [array of data]) suitable if you only need to return
 When using route parameters, DO NOT USE view, data, status and headers (reserved by Laravel).
 */
 Route::view('/weird-greeting', 'weird_greeting', ['message' => 'That is weird!']);
+
+/*
+To list all routes
+php artisan route:list or ./vendor/bin/sail artisan route:list -v (show middleware assigned to each route) --except-vendor (hide third-party routes)
+*/
